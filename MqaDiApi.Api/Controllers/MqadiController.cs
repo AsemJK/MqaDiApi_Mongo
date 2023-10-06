@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MqaDiApi.Data.Models;
 using MqaDiApi.Services;
@@ -22,6 +21,17 @@ namespace MqaDiApi.Controllers
         {
             var res = await _mqadiService.GetAsync();
             return res;
+        }
+        [HttpPost("add")]
+        public async Task<Mqadi> NewMqadi(Mqadi payload)
+        {
+            var newAdded = await _mqadiService.CreateAsync(payload);
+            return newAdded;
+        }
+        [HttpPost("done")]
+        public async Task MakeDone(string id)
+        {
+            await _mqadiService.MakeDoneAsync(id);
         }
     }
 }

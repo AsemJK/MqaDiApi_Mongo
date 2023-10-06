@@ -1,10 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace MqaDiApi.Data.Models
 {
@@ -14,7 +9,9 @@ namespace MqaDiApi.Data.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         public string Description { get; set; }
-        public decimal Qty { get; set; }
-        public bool Done { get; set; }
+        public decimal Qty { get; set; } = 1;
+        public bool Done { get; set; } = false;
+        public DateTime CreatedUTC { get; set; } = DateTime.UtcNow;
+        public string Notes { get; set; }
     }
 }

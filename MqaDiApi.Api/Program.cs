@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using MqaDiApi.Api.Services;
 using MqaDiApi.Data.Models;
 using MqaDiApi.Data.Settings;
 using MqaDiApi.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +16,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var mongoDbConfig =  builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
+var mongoDbConfig = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
+builder.Services.Configure<MongoDbConfig>(builder.Configuration.GetSection(nameof(MongoDbConfig)));
 builder.Services.AddSingleton<IMqadiService, MqadiService>();
 
 // For Identity  
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddMongoDbStores<ApplicationUser,ApplicationRole,Guid>(
-                    mongoDbConfig.ConnectionString,mongoDbConfig.DatabaseName);
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
+                    mongoDbConfig.ConnectionString, mongoDbConfig.DatabaseName);
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireNonAlphanumeric = false;
@@ -58,7 +58,7 @@ builder.Services.AddAuthentication(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (1 == 1 || app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/setup-dotnet@main
+    - uses: actions/setup-dotnet@cook
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:

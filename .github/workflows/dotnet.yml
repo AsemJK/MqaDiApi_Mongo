@@ -13,9 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+     DOTNET_INSTALL_DIR: "./.dotnet"
     steps:
-    - uses: actions/setup-dotnet@cook
+    - uses: actions/setup-dotnet@main
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:

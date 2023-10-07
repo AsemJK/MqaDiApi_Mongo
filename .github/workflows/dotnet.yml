@@ -16,7 +16,7 @@ jobs:
     env:
      DOTNET_INSTALL_DIR: "./.dotnet"
     steps:
-    - uses: actions/setup-dotnet@main
+    - uses: actions/setup-dotnet@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:

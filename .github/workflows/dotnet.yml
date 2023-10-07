@@ -6,14 +6,16 @@ name: .NET
 on:
   push:
     branches: [ "cook" ]
+  pull_request:
+    branches: [ "cook" ]
 
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@main
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:

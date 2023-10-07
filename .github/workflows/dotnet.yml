@@ -6,13 +6,11 @@ name: .NET
 on:
   push:
     branches: [ "cook" ]
-  pull_request:
-    branches: [ "cook" ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
      DOTNET_INSTALL_DIR: "./.dotnet"
     steps:
